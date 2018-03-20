@@ -17,6 +17,7 @@ extension Visualise {
                 break
             }
         }
+        self.showAnimation()
         return self.elements
     }
 }
@@ -28,10 +29,11 @@ extension Visualise {
         for index in 0..<self.elements.count {
             for secondIndex in 0..<self.elements.count - 1 {
                 if self.elements[index] < self.elements[secondIndex] {
-                    self.elements.swapAt(index, secondIndex)
+                    self.update(swap: index, with: secondIndex)
                 }
             }
         }
+        self.showAnimation()
         return self.elements
     }
 }
@@ -43,10 +45,11 @@ extension Visualise {
         for index in 0..<self.elements.count {
             for secondIndex in (index..<self.elements.count).reversed() {
                 if self.elements[index] > self.elements[secondIndex] {
-                    self.elements.swapAt(index, secondIndex)
+                    self.update(swap: index, with: secondIndex)
                 }
             }
         }
+        self.showAnimation()
         return self.elements
     }
 }

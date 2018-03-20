@@ -1,5 +1,4 @@
 import UIKit
-import PlaygroundSupport
 
 extension UIView {
     func setX(_ x: CGFloat) {
@@ -11,6 +10,8 @@ extension UIView {
 
 public class Visualise: UIView {
     public var elements: [Int]
+    var animations: [UIViewPropertyAnimator] = []
+    var animationsDelay: Double = 0.5
     public var bars: [UIView] = []
 
     public init(_ elements: [Int]) {
@@ -47,19 +48,26 @@ public class Visualise: UIView {
     }
 
     func update(swap: Int, with: Int) {
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5) {
-            let biggerX = self.subviews[swap].frame.origin.x
-            let smallerX = self.subviews[with].frame.origin.x
+        let biggerX = self.subviews[swap].frame.origin.x
+        let smallerX = self.subviews[with].frame.origin.x
 
-            let sizeChange = UIViewPropertyAnimator(duration: 0.5, curve: .easeIn, animations: {
-                self.subviews[swap].setX(smallerX)
-                self.subviews[with].setX(biggerX)
-            })
-
-            sizeChange.startAnimation()
-            self.elements.swapAt(swap, with)
-            self.bars.swapAt(swap, with)
+        let animation = UIViewPropertyAnimator(duration: 0.5, curve: .easeIn, animations: {
+            self.subviews[swap].setX(smallerX)
+            self.subviews[with].setX(biggerX)
             self.exchangeSubview(at: swap, withSubviewAt: with)
-//        }
+        })
+
+        self.animations.append(animation)
+        self.elements.swapAt(swap, with)
+        self.bars.swapAt(swap, with)
+    }
+
+    func showAnimation() {
+        for animation in self.animations {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + self.animationsDelay) {
+                animation.startAnimation()
+            }
+            self.animationsDelay += 0.5
+        }
     }
 }
