@@ -1,4 +1,21 @@
+//
+//  Visualise.swift
+//  Sorting Algorithms
+//
+//  Created by Tiago Ferreira on 12/03/2018.
+//  Copyright © 2018 Tiago Ferreira.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+// EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+// OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+// IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+// CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+// TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+// SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+//
+
 import UIKit
+import PlaygroundSupport
 
 extension UIView {
     func setX(_ x: CGFloat) {
@@ -9,10 +26,10 @@ extension UIView {
 }
 
 public class Visualise: UIView {
-    public var elements: [Int]
+    var elements: [Int]
     var animations: [UIViewPropertyAnimator] = []
-    var animationsDelay: Double = 0.5
-    public var bars: [UIView] = []
+    var animationsDelay = DispatchTime.now() + 0.5
+    var bars: [UIView] = []
 
     public init(_ elements: [Int]) {
         self.elements = elements
@@ -64,10 +81,10 @@ public class Visualise: UIView {
 
     func showAnimation() {
         for animation in self.animations {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + self.animationsDelay) {
+            DispatchQueue.main.asyncAfter(deadline: self.animationsDelay) {
                 animation.startAnimation()
             }
-            self.animationsDelay += 0.5
+            self.animationsDelay = self.animationsDelay + 0.5
         }
     }
 }

@@ -1,0 +1,18 @@
+name: Sorting Algorithms
+identifier: com.tiferrei.sortingAlgorithms
+imports:
+ - UIKit
+ - PlaygroundSupport
+chapters:
+ - name: Sorting Algorithms
+   edge_to_edge_live_view: true 
+   live_view_mode: "VisibleByDefault"
+glossary:
+  BigO Notation: A mathematical notation that describes the limiting behaviour of a function when the argument tends towards a particular value or infinity.
+  Bubble Sort: A simple sorting algorithm that repeatedly steps through the list to be sorted, compares each pair of adjacent items and swaps them if they are in the wrong order.
+  Insertion Sort: A simple sorting algorithm that builds the final sorted array (or list) one item at a time.
+  Selection Sort: A sorting algorithm, specifically an in-place comparison sort. It has O(n2) time complexity, making it inefficient on large lists, and generally performs worse than the similar insertion sort.
+  Merge Sort: An efficient, general-purpose, comparison-based sorting algorithm. It uses the divide and conquer mechanism.
+  Quick Sort: An efficient sorting algorithm, serving as a systematic method for placing the elements of an array in order. Can be twice or even three times as efficient as merge sort.
+  Bucket Sort: A sorting algorithm that works by distributing the elements of an array into a number of buckets. Each bucket is then sorted individually by recursively applying the bucket sorting algorithm.
+  Heap Sort: Heapsort can be thought of as an improved selection sort; like that algorithm, it divides its input into a sorted and an unsorted region, and it iteratively shrinks the unsorted region by extracting the largest element and moving that to the sorted region.
